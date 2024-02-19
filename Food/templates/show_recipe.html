@@ -1,0 +1,142 @@
+{% extends 'config.html' %}
+{% block start %}
+
+<!-- Styling -->
+<style>
+    body {
+        background-color: #192734;
+        margin: 0;
+        padding: 0;
+    }
+
+    .card {
+        background-color: #1da1f2 !important; /* Twitter Blue */
+        color: white;
+    }
+
+    .table {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        color: #fff;
+        border-radius: 10px; /* Add border-radius for curved edges */
+        overflow: hidden; /* Ensure overflow is hidden for curved edges */
+
+    }
+
+    .table th,
+    .table td {
+        padding: 1rem;
+        text-align: left;
+    }
+
+    /* Style for the recipe table */
+    .recipe-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .recipe-table th, .recipe-table td {
+        border: 1px solid #ddd;
+        text-align: left;
+    }
+
+    .recipe-table th {
+        background-color: #f2f2f2;
+    }
+
+    .btn-primary {
+        background-color: white;
+        color: #1da1f2; /* Twitter Blue */
+    }
+
+    .btn-outline-secondary{
+        background-color: #1da1f2;
+        color: white; /* Twitter Blue */
+    }
+
+    /* Heading style */
+    h3 {
+        color: #1da1f2; /* Twitter Blue */
+        margin-top: 20px;
+    }
+
+    .image-container {
+        width: 130px;
+        height: 85px;
+        overflow: hidden;
+        border: 1px solid #ddd;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .image-container img {
+        width: 100%;
+        height: auto;
+    }
+</style>
+
+<!-- Heading -->
+<h3 class="text-center mb-4">Recipe List</h3>
+
+<!-- Search Bar -->
+<div class="container mt-5"></div>
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <form   >
+            <div class="input-group mb-3">
+                <input type="text" name="search" class="form-control" placeholder="Search recipes...">
+                <button class="btn btn-outline-secondary" type="submit">Search</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Recipe List -->
+<div class="container mt-3">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow p-3 mb-5 bg-white rounded">
+                <div class="card-body">
+                    <table class="table recipe-table">
+                        <thead>
+                            <tr>
+                                <th style="text-align: center;">ID</th>
+                                <th style="text-align: center;">Name</th>
+                                <th style="text-align: center;">Description</th>
+                                <th style="text-align: center;">Image</th>
+                                <th style="text-align: center;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for recipe in recipes %}
+                                <tr>
+                                    <td class="text-center">{{ recipe.id }}</td>
+                                    <td class="text-center">{{ recipe.recipe_name }}</td>
+                                    <td class="text-center">{{ recipe.recipe_description }}</td>
+                                    <td class="text-center">
+                                        <div class="image-container">
+                                            <img src="/media/{{ recipe.recipe_image }}" alt="Recipe Image">
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <!-- Add your Update and Delete button logic here -->
+                                        <div class="mb-2">
+                                            <a href="/update-recipe/{{ recipe.slug }}" class="btn btn-success" style="width: 100%;">Update</a>
+                                        </div>
+                                        <div class="mb-2">
+                                            <a href="/delete-recipe/{{ recipe.id }}" class="btn btn-danger" style="width: 100%;">Delete</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

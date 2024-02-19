@@ -1,0 +1,75 @@
+{% extends 'config.html' %}
+
+{% block start %}
+<style>
+    body {
+        background-color: #192734;
+        margin: 0;
+        padding: 0;
+    }
+
+    .card {
+        background-color: #1da1f2 !important; /* Twitter Blue */
+        color: white;
+    }
+
+    .table {
+        width: 100%;
+        margin-bottom: 1rem;
+        color: #fff;
+    }
+
+    .table th,
+    .table td {
+        padding: 1rem;
+        text-align: left;
+        border-bottom: 1px solid #38444d;
+    }
+
+    .btn-primary {
+        background-color: white;
+        color: #1da1f2; /* Twitter Blue */
+    }
+
+    .page-menu {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .page-menu a {
+        margin: 0 1rem;  /* Adjusted margin for both links */
+        text-decoration: none;
+        color: white;
+        font-weight: bold;
+    }
+
+    .separator {
+        color: white;
+    }
+
+    .add-recipe-link {
+        margin: 0 1rem;  /* Adjusted margin for both links */
+    }
+
+    /* Heading style */
+    h1 {
+        color: #1da1f2; /* Twitter Blue */
+    }
+</style>
+
+<!-- Heading -->
+<h1 class="text-center mb-4">This is the Home Page</h1>
+
+<!-- Page Menu -->
+<div class="page-menu">
+    <!-- Link to Add Recipe Page using URL pattern name -->
+    <a href="{% url 'add_recipe_page' %}" class="link">Add Recipe</a>
+    <span class="separator">|</span>
+    <!-- Link to Show Recipe Page using direct URL path -->
+    <a href="/show-recipe/" class="link">Show Recipe</a>
+</div>
+
+{% endblock %}

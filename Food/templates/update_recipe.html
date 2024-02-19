@@ -1,0 +1,67 @@
+{% extends 'config.html' %}
+
+{% block start %}
+<style>
+    body {
+        background-color: #192734;
+        margin: 0;
+        padding: 0;
+    }
+
+    .card {
+        background-color: #1da1f2 !important; /* Twitter Blue */
+        color: white;
+    }
+
+    .form-label,
+    .form-control {
+        color: white;
+    }
+
+    .form-control {
+        background-color: #ffffff; /* Set the background color for input fields */
+        color: #000000; /* Set the default text color for input fields */
+    }
+
+    .recipe-name,
+    .recipe-description {
+        color: black;
+    }
+
+    .btn-primary {
+        background-color: white;
+        color: #1da1f2; /* Twitter Blue */
+    }
+</style>
+
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow p-3 mb-5 bg-white rounded">
+                <div class="card-body">
+                    <h3 class="card-title text-center mb-4">Update Recipe</h3>
+                    <form action="#" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="recipeName" class="form-label fw-bold">Update Recipe Name</label>
+                            <input type="text" class="form-control recipe-name" id="update_recipeName" name="update-form_recipe_name" value="{{ recipes.recipe_name }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipeDescription" class="form-label fw-bold">Update Recipe Description</label>
+                            <textarea class="form-control recipe-description" id="update_recipeDescription" name="update-form_recipe_description" required>{{ recipes.recipe_description }}</textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipeImage" class="form-label fw-bold">Update Recipe Image</label>
+                            <input type="file" class="form-control" id="update_recipeImage" name="update-form_recipe_image" accept="image/*" required>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-success btn-sm">Update Recipe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
